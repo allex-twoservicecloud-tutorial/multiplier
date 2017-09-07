@@ -1,0 +1,21 @@
+{
+  "name": "allex__twoservicecloud_multiplierservice",
+  "version": "1.0.0",
+  "description": "MultiplierService",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url" : "git@github.com:allex-twoservicecloud-tutorial/multiplier.git"
+  },
+  "keywords": [
+    "ecosystem:allex",
+    "Service",
+    "Multiplier"
+  ],
+  "author": "allex",
+  "license": "ISC"
+}
+
