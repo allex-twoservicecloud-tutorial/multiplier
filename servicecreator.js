@@ -58,6 +58,9 @@ function createMultiplierService(execlib, ParentService, leveldblib) {
   };
 
   MultiplierService.prototype.multiply = function (number) {
+    if (!lib.isNumber(this.multiplier)) {
+      return q.reject(new lib.Error('NO_MULTIPLIER', 'MultiplierService currently has no multiplier'));
+    }
     return q(number*this.multiplier);
   };
 
