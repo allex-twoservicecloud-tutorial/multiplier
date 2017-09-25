@@ -50,19 +50,17 @@ function createMultiplierService(execlib, ParentService, leveldblib) {
 
   MultiplierService.prototype.onMultiplierSet = function (keyvalarray) {
     var key = keyvalarray[0], val = keyvalarray[1];
-    this.multiplier = val;
+    this.state.set(key, val);
+    //this.state.set.apply(this.state, keyvalarray);
   };
 
   MultiplierService.prototype.onMultiplierRemoved = function (key) {
-    this.multiplier = null;
+    this.state.remove(key);
   };
 
-  MultiplierService.prototype.multiply = function (number) {
-    if (!lib.isNumber(this.multiplier)) {
-      return q.reject(new lib.Error('NO_MULTIPLIER', 'MultiplierService currently has no multiplier'));
-    }
-    return q(number*this.multiplier);
-  };
+  MultiplierService.prototype.multiply = execSuite.dependentServiceMethod([], ['multiplier'], function (multiplier, number, defer) {
+    defer.resolve(multiplier*number);
+  });
 
   MultiplierService.prototype.propertyHashDescriptor = {
     configsinkname: {
